@@ -9,7 +9,7 @@ void main() {
 
   setUp(() {
     channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
+      return 'Response from JS';
     });
   });
 
@@ -17,7 +17,8 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await FlutterWebPluginExample.platformVersion, '42');
+  test('sendMethodMessage', () async {
+    expect(await FlutterWebPluginExample.sendMethodMessage(null),
+        'Response from JS');
   });
 }
