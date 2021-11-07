@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  String _unswerFromJs = 'Unknown';
 
   @override
   void initState() {
@@ -26,14 +26,14 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
+    dynamic answerFromJs;
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await FlutterWebPluginExample.platformVersion ?? 'Unknown platform version';
+      answerFromJs =
+          await FlutterWebPluginExample.sendMethodMessage('Arguments for JS');
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      answerFromJs = 'Failed to get platform version.';
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _unswerFromJs = answerFromJs;
     });
   }
 
@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text('Running on: $_unswerFromJs\n'),
         ),
       ),
     );
