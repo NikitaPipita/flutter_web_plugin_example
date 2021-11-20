@@ -46,7 +46,7 @@ class FlutterWebPluginExampleWeb {
     }
   }
 
-  static Future<dynamic> sendMethodMessage(
+  Future<dynamic> sendMethodMessage(
       String method, String? arguments) async {
     final dynamic response =
         await promiseToFuture(jsInvokeMethod(method, arguments));
